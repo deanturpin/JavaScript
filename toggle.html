@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- local copy -->
+<script src="jquery-2.2.4.js"></script>
+
+<!-- jQuery code -->
+<script>
+$(function(){
+
+		$("#expander").click(function(){
+				// $("li").append("blah");
+				$("p").toggle();
+				$("#expander").text("+");
+				});
+		});
+</script>
+
+</head>
+<body>
+
+<h2 id=one><span id=expander>-</span> Toggle</h2>
+
+<p id=debug>
+Nothing to see here
+</p>
+
+</body>
+</html>

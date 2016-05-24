@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- local copy -->
+<script src="jquery-2.2.4.js"></script>
+
+<!-- jQuery code -->
+<script>
+$(function(){
+
+		$("#one").click(function(){
+				// $("li").append("blah");
+				$("#debug").text("Click");
+				});
+
+		$("#two").dblclick(function(){
+				// $("ul").append("blah");
+				$("#debug").text("Double click");
+				});
+
+		$("#three").hover(function(){
+				// $("ul").append("blah");
+				$("#debug").text("Hover");
+				});
+
+		});
+</script>
+
+</head>
+<body>
+
+<button id=one>Click me</button>
+<button id=two>Double-click me</button>
+<button id=three>Hover (over) me</button>
+
+<p id=debug>
+Nothing to see here
+</p>
+
+</body>
+</html>

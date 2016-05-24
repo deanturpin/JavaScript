@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+
+<script src="jquery-2.2.4.js"></script>
+
+<!-- jQuery -->
+<script>
+$( document ).ready(function(){
+		console.log("Loaded " + new Date);
+
+		// AJAX complete handler
+		$( document ).ajaxComplete(function( event, request, settings ) {
+				console.log("ajaxComplete");
+				console.log("url " + settings.url);
+				console.log("responseText " + request.responseText);
+				console.log("status " + request.status);
+				console.log("statusText " + request.statusText);
+				console.log("");
+				});
+
+		// AJAX error
+		$( document ).ajaxError(function( event, request, settings ) {
+				console.log("ajaxError");
+				console.log("url " + settings.url);
+				console.log("responseText " + request.responseText);
+				console.log("status " + request.status);
+				console.log("statusText " + request.statusText);
+				console.log("");
+				});
+
+		// $( document ).load( "test.html" );
+		// $.get( "test.html" );
+
+		// Hover handler
+		$("li").hover(
+			function() {
+				$(this).css('color', 'green');
+			}, function() {
+				$(this).css('color', 'red');
+			});
+
+		// $("li").each(function() {
+		//     console.log($(this).text());
+		//     $(this).css('color', 'red');
+		// 	});
+
+		console.log("Complete " + new Date);
+});
+</script>
+
+</head>
+<body>
+
+<table width=100%>
+<tr>
+
+<!--
+LEFT COLUMN
+-->
+
+<td>
+<ul>
+<li>8.8.8.8</li>
+<li>4.4.4.4</li>
+<li>10.10.10.10</li>
+</ul>
+</td>
+
+<!--
+RIGHT COLUMN
+-->
+<td>
+<ul>
+<li>127.0.0.1</li>
+<li>127.0.0.2</li>
+</ul>
+</td>
+
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8"> 
+
+<!-- local copy -->
+<script src="jquery-2.2.4.js"></script>
+
+<!-- jQuery code -->
+<script>
+$( document ).ready(function(){
+		console.log("Loaded " + new Date);
+
+		// AJAX complete handler
+		$( document ).ajaxComplete(function( event, request, settings ) {
+				console.log("ajaxComplete");
+				console.log("url " + settings.url);
+				console.log("responseText " + request.responseText);
+				console.log("status " + request.status);
+				console.log("statusText " + request.statusText);
+				console.log("");
+				});
+
+		// AJAX error
+		$( document ).ajaxError(function( event, request, settings ) {
+				console.log("ajaxError");
+				console.log("url " + settings.url);
+				console.log("responseText " + request.responseText);
+				console.log("status " + request.status);
+				console.log("statusText " + request.statusText);
+				console.log("");
+				});
+
+		// $( document ).load( "test.html" );
+		$.get( "test.html" );
+
+		console.log("Complete " + new Date);
+});
+</script>
+
+</head>
+<body>
+<p id=debug>
+Nothing to see here (look in the console)
+</p>
+</body>
+</html>
