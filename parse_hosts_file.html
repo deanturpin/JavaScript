@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+
+<script src="jquery-2.2.4.min.js"></script>
+
+<!-- jQuery -->
+<script>
+$( document ).ready(function(){
+
+		// // AJAX complete handler
+		// $( document ).ajaxComplete(function( event, request, settings ) {
+		// 		// Set default status color and override if it's present
+		// 		var color = 'red';
+		// 		if (request.responseText == 1) {
+		// 			color = 'green';
+		// 		}
+
+		// 		// Set the new color
+		// 		$("span.ping:contains(" + settings.url + ")").css('color', color);
+		// 		});
+
+		// // For each element of class ping
+		// function ping(){
+		// 	$('span.ping').each(function(){
+		// 			// Change the color to indicate we're testing it
+		// 			// $(this).css('color', 'orange');
+
+		// 			// And request the status using the IP within the tag
+		// 			$.ajax($(this).text());
+		// 			});
+		// }
+
+		$('p#date').text(new Date);
+		// ping();
+
+		var hosts=$('pre#hosts').text();
+		console.log(hosts);
+
+		// Ping cycle
+		setInterval(function() {
+			$('p#date').text(new Date);
+			// ping();
+		}, 2000);
+});
+</script>
+
+</head>
+<body>
+
+<p id=date></p>
+
+<pre id=hosts>
+127.0.0.1 localhost
+
+# 192.168.0.0/27
+192.168.0.1 neque
+192.168.0.5 maxime
+192.168.0.6 ea
+192.168.0.7 occaecati
+
+# 10.10.10.0/24
+10.10.10.1 sit
+10.10.10.2 dignissimos
+10.10.10.3 consequatur
+
+# 10.11.0.0/16
+10.11.10.1 one # 10.10.10.1
+10.11.10.2 two
+10.11.10.3 three
+10.11.10.4 four
+10.11.10.5 five
+
+# A couple of randoms
+8.8.8.8 real1
+8.8.4.4 real2
+</pre>
+
+</body>
+</html>
