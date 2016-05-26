@@ -11,36 +11,38 @@ $( document ).ready(function(){
 
 		// AJAX complete handler
 		$( document ).ajaxComplete(function( event, request, settings ) {
-				console.log("url " + settings.url);
-				console.log("responseText " + request.responseText);
-				// console.log("status " + request.status);
-				// console.log("statusText " + request.statusText);
-
-				if (request.responseText == 0) {
-					console.log("no dice");
-				} else {
-					console.log("dice!");
-					// $(":contains(4.4.4.4)").css('color', 'green');
-
+				// Set default status color and override if it's present
+				var color = 'red';
+				if (request.responseText == 1) {
+					color = 'green';
 				}
 
-				console.log("");
-
+				// Set the new color
+				$(":contains(" + settings.url + ")").css('color', color);
 				});
 
-		// $.ajax("ping");
-		// $.ajax("pong");
+		// For each element of class ping
+		function ping(){
+			$('.ping').each(function(){
+					// Change the color to indicate we're testing it
+					$(this).css('color', 'orange');
 
-		$('li').each(function(){
-			// $(this).css('color', 'green');
-			// console.log("pong?" + $(this).text());
-			$.ajax($(this).text());
-		});
+					// And request the status using the IP within the tag
+					$.ajax($(this).text());
+					});
+		}
+
+		// Ping cycle
+		setInterval(function() {
+			ping();
+		}, 2000);
 });
 </script>
 
 </head>
 <body>
+
+<p>We can ping <span class="ping">10.10.10.10</span> in a sentence.</p>
 
 <table width=100%>
 <tr>
@@ -51,9 +53,9 @@ LEFT COLUMN
 
 <td>
 <ul>
-<li>8.8.8.8</li>
-<li>4.4.4.4</li>
-<li>10.10.10.10</li>
+<li class="ping">8.8.8.8</li>
+<li class="ping">4.4.4.4</li>
+<li class="ping">10.10.10.10</li>
 </ul>
 </td>
 
@@ -62,8 +64,8 @@ RIGHT COLUMN
 -->
 <td>
 <ul>
-<li>127.0.0.1</li>
-<li>127.0.0.2</li>
+<li class="ping">127.0.0.1</li>
+<li class="ping">127.0.0.2</li>
 </ul>
 </td>
 
