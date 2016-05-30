@@ -1,23 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8"> 
+<meta charset='UTF-8'> 
 
-<script src="jquery-2.2.4.min.js"></script>
+<script src='jquery-2.2.4.min.js'></script>
 
 <script>
-$( document ).ready(function(){
+$(document).ready(function(){
+
+		// Write to debug field
+		function debug(message){
+			var current = $('p#debug').text();
+			$('p#debug').text(current + message + "\n");
+		};
+
+		$(document).ajaxComplete(function(event, request, settings) {
+			debug(settings.url + " complete");
+			$('p#hosts').text(request.responseText);
+		});
 
 		// Update cycle
 		setInterval(function() {
 			$('p#timestamp').text(new Date);
-			$('p#debug').text("update timestamp");
+			debug("update timestamp");
 		}, 2000);
 
 		// Create page elements
+		debug('Create elements');
 		$('body').append('<p id=timestamp>tbc</p>');
-		$('body').append('<p id=debug>blah</p>');
-		$('body').append('<p id=hosts>hosts</p>');
+		$('body').append('<p id=hosts>tbc</p>');
+		$('body').append('<p id=debug>tbc</p>');
+
+		// Fetch hosts file
+		debug('Get hosts file');
+		$.ajax('hosts.txt');
 });
 </script>
 
