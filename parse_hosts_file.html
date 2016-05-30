@@ -10,35 +10,42 @@ $(document).ready(function(){
 
 		// Write to debug field
 		function debug(message){
-			var current = $('p#debug').text();
-			$('p#debug').text(current + message + "\n");
+			var current = $('p#debug').html();
+			$('p#debug').html(current + message + "<br>");
 		};
 
 		$(document).ajaxComplete(function(event, request, settings) {
 			debug(settings.url + " complete");
-			$('p#hosts').text(request.responseText);
+			// Extract hosts
+			var hosts = request.responseText.split('\n');
+
+			for (var i = 0; i < hosts.length; ++i) {
+				// console.log(hosts[i]);
+				$('p#hosts').append('<span>' + hosts[i] + '</span><br>');
+			}
+
+			console.log(hosts.length + " lines extracted");
 		});
 
 		// Update cycle
 		setInterval(function() {
 			$('p#timestamp').text(new Date);
-			debug("update timestamp");
 		}, 2000);
 
 		// Create page elements
 		debug('Create elements');
 		$('body').append('<p id=timestamp>tbc</p>');
-		$('body').append('<p id=hosts>tbc</p>');
-		$('body').append('<p id=debug>tbc</p>');
+		$('body').append('<p id=debug>tbc<br></p>');
+		$('body').append('<p id=hosts></p>');
 
 		// Fetch hosts file
 		debug('Get hosts file');
-		$.ajax('hosts.txt');
+		$.ajax('hosts');
 });
 </script>
 
 </head>
-<body>
-<!-- nothing to see here -->
+<body style='background-color: black; color: grey; font-family: monospace;'>
+<!-- To see here nothing -->
 </body>
 </html>
