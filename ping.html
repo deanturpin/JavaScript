@@ -17,10 +17,6 @@ $(document).ready(function(){
 			// Handle pings
 			if (RegExp('ping').test(settings.url)) {
 
-				// console.log('ping for ' + settings.url);
-
-				console.log(settings.url + ' repsonse ' + request.responseText);
-
 				// Check result
 				var color = 'red';
 				if (request.responseText == 1)
@@ -29,7 +25,6 @@ $(document).ready(function(){
 				// Extract the IP from the request
 				var ip = settings.url.split('?').pop();
 
-				console.log(ip + " is going " + color);
 				$('span:contains(' + ip + ')').css('color', color);
 
 			} else {
@@ -55,7 +50,6 @@ $(document).ready(function(){
 		// Ping each IP in the hosts file
 		function ping(){
 			$.each(IPs, function(index, value){
-				// console.log('localhost?ping?' + value);
 				$.ajax('http://localhost/cgi-bin/ping?' + value);
 			});
 		};

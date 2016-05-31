@@ -1,5 +1,11 @@
-127.0.0.1		localhost	# should be green
-216.58.198.238	google.com	# external thing
-10.1.1.1		ipgonebad	# should be red
-192.168.1.254	possible1	# should be red
-192.168.1.1		possible2	# should be red
+# Should be green
+127.0.0.1		localhost	
+
+# Should be green if you have an Internet connection
+216.58.198.238	google.com	
+
+# Could be green
+192.168.1.1		couldbe1
+192.168.1.2		couldbe2
+192.168.1.3		couldbe3
+192.168.1.4		couldbe4
