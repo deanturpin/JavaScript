@@ -1,23 +1,5 @@
-127.0.0.1 localhost
-
-# 192.168.0.0/27
-192.168.0.1 neque
-192.168.0.5 maxime
-192.168.0.6 ea
-192.168.0.7 occaecati
-
-# 10.10.10.0/24
-10.10.10.1 sit
-10.10.10.2 dignissimos
-10.10.10.3 consequatur
-
-# 10.11.0.0/16
-10.11.10.1 one # 10.10.10.1
-10.11.10.2 two
-10.11.10.3 three
-# 10.11.10.4 four
-# 10.11.10.5 five
-
-# A couple of randoms
-8.8.8.8 real1
-8.8.4.4 real2
+127.0.0.1		localhost	# should be green
+216.58.198.238	google.com	# external thing
+10.1.1.1		ipgonebad	# should be red
+192.168.1.254	possible1	# should be red
+192.168.1.1		possible2	# should be red

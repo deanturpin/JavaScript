@@ -1,48 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset='UTF-8'> 
 
-<meta charset="UTF-8"> 
+<script src='jquery-2.2.4.min.js'></script>
 
-<!-- local copy -->
-<script src="jquery-2.2.4.js"></script>
-
-<!-- jQuery code -->
 <script>
-$( document ).ready(function(){
-		console.log("Loaded " + new Date);
+$(document).ready(function(){
+
+		// Array to hold all the valid IPs in the hosts file
+		var IPs = [];
 
 		// AJAX complete handler
-		$( document ).ajaxComplete(function( event, request, settings ) {
-				console.log("ajaxComplete");
-				console.log("url " + settings.url);
-				console.log("responseText " + request.responseText);
-				console.log("status " + request.status);
-				console.log("statusText " + request.statusText);
-				console.log("");
-				});
+		$(document).ajaxComplete(function(event, request, settings) {
 
-		// AJAX error
-		$( document ).ajaxError(function( event, request, settings ) {
-				console.log("ajaxError");
-				console.log("url " + settings.url);
-				console.log("responseText " + request.responseText);
-				console.log("status " + request.status);
-				console.log("statusText " + request.statusText);
-				console.log("");
-				});
+			// Handle pings
+			if (RegExp('ping').test(settings.url)) {
 
-		// $( document ).load( "test.html" );
-		$.get( "test.html" );
+				// console.log('ping for ' + settings.url);
 
-		console.log("Complete " + new Date);
+				console.log(settings.url + ' repsonse ' + request.responseText);
+
+				// Check result
+				var color = 'red';
+				if (request.responseText == 1)
+					color = 'green';
+
+				// Extract the IP from the request
+				var ip = settings.url.split('?').pop();
+
+				console.log(ip + " is going " + color);
+				$('span:contains(' + ip + ')').css('color', color);
+
+			} else {
+
+				// Otherwise it must be the hosts file request
+				// Extract hosts
+				var hosts = request.responseText.split('\n');
+
+				// Iterate through each IP in the hosts file
+				for (var i = 0; i < hosts.length; ++i) {
+
+					// Create a span for each line
+					$('p#hosts').append('<span>' + hosts[i] + '</span><br>');
+
+					// Extract IPs
+					var ip = RegExp('^[0-9\.]{7,}').exec(hosts[i]);
+					if (ip)
+						IPs.push(ip);
+				}
+			}
+		});
+
+		// Ping each IP in the hosts file
+		function ping(){
+			$.each(IPs, function(index, value){
+				// console.log('localhost?ping?' + value);
+				$.ajax('http://localhost/cgi-bin/ping?' + value);
+			});
+		};
+
+		// Update cycle
+		setInterval(function() {
+			$('p#timestamp').text(new Date);
+			ping();
+		}, 2000);
+
+		// Create page elements
+		$('body').append('<p id=timestamp>tbc</p>');
+		$('body').append('<p id=hosts></p>');
+
+		// Fetch hosts file
+		$.ajax('hosts');
 });
 </script>
 
 </head>
-<body>
-<p id=debug>
-Nothing to see here (look in the console)
-</p>
+<body style='background-color: black; color: grey; font-family: monospace;'>
+<!-- To see here nothing -->
 </body>
 </html>
