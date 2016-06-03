@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- <script src="../jquery-2.2.4.min.js"></script> -->
+
+<!-- jQuery code -->
+<script>
+$(document).ready(function(){
+
+		// All spans
+		console.log('Return all spans');
+		$('span').each(function(){
+			console.log($(this).text());
+		});
+
+		// The IP we're interested in
+		var ip = '192.168.0.1';
+
+		console.log('Return all spans that :contain 192.168.0.1');
+		$('span:contains("' + ip + '")').each(function(){
+			console.log($(this).text());
+		});
+
+		// Error - matches first three
+		console.log('Return all spans that contain exactly 192.168.0.1 (and no more)');
+		$('span:contains("' + ip + '")').each(function(){
+
+			// Extract just the IP
+			var result = $(this).text();
+			var match = /^[0-9\.]{7,}/.exec(result);
+
+			if (ip === match[0])
+				console.log($(this).text());
+		});
+
+		});
+</script>
+
+</head>
+<body>
+<span>192.168.0.1		one</span><br>
+<span>192.168.0.12		two</span><br>
+<span>192.168.0.123		three</span><br>
+<span>192.168.1.4		four</span><br>
+</body>
+</html>
