@@ -11,13 +11,10 @@ $(document).ready(function(){
 	$('span').each(function(){
 		var text = $(this).text();
 
-		console.log('text is ' + text);
-
 		// Check if it's an IP
-		var ip = /[0-9\.]{7,}/.exec(text);
-		
-		console.log(ip ? true : false);
-
+		var ip = /^[0-9\.]{7,}$/.exec(text);
+	
+		// Color span if it's an IP
 		var color = (ip ? 'green' : 'red');
 		$(this).css('color', color);
 	});
@@ -30,6 +27,24 @@ $(document).ready(function(){
 <p>
 The first is <span>192.168.0.1</span>, then <span>8.8.8.8</span> and finally
 <span>8.8.4</span>.
+</p>
+
+<h2>ARP table</h2>
+<p>
+<span>192.168.0.10</span><br>
+<span>192.168.0.11</span><br>
+<span>192.168.0.8 </span><br>
+<span>192.168.0.14</span><br>
+<span>192.168.0.15</span><br>
+<span>192.168.0.13</span><br>
+<span>192.168.0.12</span><br>
+<span>192.168.0.2 </span><br>
+<span>192.168.0.3 </span><br>
+<span>192.168.0.1 </span><br>
+<span>192.168.0.6 </span><br>
+<span>192.168.0.7 </span><br>
+<span>192.168.0.4 </span><br>
+<span>192.168.0.5 </span><br>
 </p>
 </body>
 </html>
