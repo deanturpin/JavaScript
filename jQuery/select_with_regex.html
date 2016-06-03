@@ -9,14 +9,8 @@
 $(document).ready(function(){
 	// For each span
 	$('span').each(function(){
-		var text = $(this).text();
-
-		// Check if it's an IP
-		var ip = /^[0-9\.]{7,}$/.exec(text);
-	
-		// Color span if it's an IP
-		var color = (ip ? 'green' : 'red');
-		$(this).css('color', color);
+		// Check if it's an IP and set the span colour accordingly
+		$(this).css('color', (/^[0-9\.]{7,}$/.exec($(this).text()) ? 'green' : 'red'));
 	});
 });
 </script>
