@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'> 
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+
+<script>
+$(document).ready(function(){
+	// For each span
+	$('span').each(function(){
+		var text = $(this).text();
+
+		console.log('text is ' + text);
+
+		// Check if it's an IP
+		var ip = /[0-9\.]{7,}/.exec(text);
+		
+		console.log(ip ? true : false);
+
+		var color = (ip ? 'green' : 'red');
+		$(this).css('color', color);
+	});
+});
+</script>
+
+</head>
+<body>
+<body style='background-color: black; color: grey; font-family: monospace; margin-left:5em; margin-top:5em'>
+<p>
+The first is <span>192.168.0.1</span>, then <span>8.8.8.8</span> and finally
+<span>8.8.4</span>.
+</p>
+</body>
+</html>
