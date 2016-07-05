@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8'> 
+	<title>URL ticker</title>
+	<meta charset="UTF-8"> 
 
-<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+	<script src="jquery-3.0.0.min.js"></script>
 
-<script>
-$(document).ready(function() {
-
-	// List of URLS
-	var URL = [
-		'http://twitter.com',
-		'http://github.com'
+	<script>
+	$(document).ready(function() {
+		// List of URLS
+		var URL = [
+			"http://twitter.com",
+			"http://github.com"
 		];
 
+		var index = 0;
 
-	var index = 0;
-
-	setInterval(function() {
-		console.log(URL[index % URL.length]);
-
-		$('iframe').attr('src', URL[index % URL.length]);
-
-		++index;
-	}, 4000);
-
-});
-</script>
+		setInterval(function() {
+			// $("iframe").attr("src", URL[index % URL.length]);
+			console.log(URL[index % URL.length]);
+			++index;
+		}, 4000);
+	});
+	</script>
 
 </head>
+
 <body>
-<iframe height="500" width="500" src="http://google.com"></iframe>
+	<iframe height="500" width="500" src="http://google.com"></iframe>
 </body>
+
 </html>
