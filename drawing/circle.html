@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+
+<!--
+See here
+http://www.html5canvastutorials.com/tutorials/html5-canvas-circles/
+-->
+
+<html>
+<head>
+<style>
+
+body {
+margin: 0px;
+padding: 0px;
+}
+</style>
+
+</head>
+
+<body>
+	<canvas id="myCanvas" width="1000px" height="1000px"></canvas>
+
+	<script>
+	var canvas = document.getElementById("myCanvas");
+	var context = canvas.getContext('2d');
+	var centerX = 0;
+	var centerY = 0;
+	var radius = 70;
+
+	setInterval(function() {
+
+		context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+		context.stroke();
+
+		centerX += 2;	
+		centerY += 2;	
+		++radius;
+
+	}, 10);
+	</script>
+</body>
+</html>      
