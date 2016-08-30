@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cat <<MIME
+Content-Type: text/plain
+Access-Control-Allow-Origin: *
+
+MIME
+
+[[ $QUERY_STRING != "" ]] && count=$1 || count=10
+
+dd bs=1 count=$count < /dev/urandom 2>/dev/null # | xxd --plain

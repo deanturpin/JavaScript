@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>AJAX</h2>
+
+<button type="button" onclick="loadDoc()">Request data</button>
+
+<p id="demo"></p>
+
+<script>
+function loadDoc() {
+
+	// From here:
+	// http://www.w3schools.com/ajax/tryit.asp?filename=tryajax_get2
+
+	var xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			document.getElementById("demo").innerHTML = new Date() + " - " +
+			xhttp.responseText.length;
+		}
+	};
+
+	xhttp.open("GET", "http://0.0.0.0/cgi-bin/random?1000", true);
+	xhttp.send();
+}
+</script>
+
+</body>
+</html>
