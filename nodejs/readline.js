@@ -9,11 +9,14 @@ output: process.stdout
 });
 */
 
-process.stdin.setEncoding('utf8')
-process.stdin.resume()
+// process.stdin.setEncoding('utf8')
+// process.stdin.resume()
 
 process.stdin.on('data', function (command) {
-	console.log('got command: \"%s\"', command.trim())
+
+	console.log("----------");
+	console.log("%s", command)
+	console.log("----------");
 
 	// process.stdout.emit('got command: \"%s\"', command)
 })
