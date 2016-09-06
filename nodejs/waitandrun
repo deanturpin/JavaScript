@@ -1,0 +1,12 @@
+#!/bin/bash
+
+file=$1
+
+while :; do
+	
+	inotifywait -qe modify $file
+	clear
+	date
+	echo
+	node $file
+done
