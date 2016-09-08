@@ -10,5 +10,5 @@ while :; do
 	clear
 	date
 	echo
-	ip r | node $file
+	head -10 tcpdump.txt | node $file
 done
