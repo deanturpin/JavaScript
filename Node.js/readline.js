@@ -6,10 +6,13 @@ const rl = readline.createInterface({ input: process.stdin });
 rl.on('line', (line) => {
 
 	// Extract time
-	match = /[^ ]+/.exec(line)
+	// time = /[^ ]+/.exec(line)
+	// if (time)
+		// console.log(time.pop())
 
-	if (match)
-		console.log(match[0])
-	else
-		console.log("no")
+	// Extract end points
+	endPoints = /([^ ]+) > ([^ ]+):/.exec(line)
+
+	if (endPoints)
+		console.log(endPoints[1] + "\t" + endPoints[2])
 })
