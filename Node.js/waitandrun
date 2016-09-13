@@ -10,5 +10,6 @@ while :; do
 	clear
 	date
 	echo
-	head -10 tcpdump.txt | node $file
+	# head -10 tcpdump.txt | node $file
+	dd bs=40 count=10 2>/dev/null < /dev/urandom | node $file
 done
