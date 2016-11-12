@@ -11,10 +11,10 @@ function something(i, side) {
 		
 	console.log(indent, i, side)
 
-	if (i > 0) {
-		something(i - 1, "left")
-		something(i - 1, "right")
-	}
+	// Recurse - make sure to declare iterator as var
+	if (i > 0)
+		for (var j = 0; j < 2; ++j)
+			something(i - 1, j)
 }
 
 something(iterations, "start")
