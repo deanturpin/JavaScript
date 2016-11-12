@@ -2,14 +2,13 @@
 
 [[ $# == 0 ]] && echo "Usage: $0 <file to watch>" && exit -1
 
-file=$1
+basename=$(basename $1)
 
 while :; do
 	
-	inotifywait -qe modify $file
+	inotifywait -qe modify $basename.cpp
 	clear
 	date
 	echo
-	# head -10 tcpdump.txt | node $file
-	dd bs=40 count=10 2>/dev/null < /dev/urandom | node $file
+	clang++ -Weverything -std=c++1y -Wno-c++98-compat -o $basename.o $basename.cpp
 done
