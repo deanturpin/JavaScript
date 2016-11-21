@@ -1,3 +1,5 @@
+#!/usr/bin/babel-node
+
 // https://nodejs.org/api/readline.html#readline_event_line
 
 const readline = require('readline');
