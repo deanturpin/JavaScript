@@ -9,7 +9,7 @@ function primes(i, list) {
 	++iterations
 
 	// Return the list if we've reached the beginning
-	if (i < 0)
+	if (i < 2)
 		return list
 
 	// If there's no remainder then it's not a prime
@@ -22,5 +22,5 @@ function primes(i, list) {
 	return primes(i - 1, i + " " + list)
 }
 
-console.log(primes(100, ""))
+console.log(primes(1000, ""))
 console.log(iterations + " iterations")
