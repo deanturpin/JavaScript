@@ -4,11 +4,23 @@
 
 var iterations = 0
 
-function prime(i) {
+function primes(i, list) {
 
-	console.log("Calculate prime numbers up to " + i)
+	++iterations
 
-	// A prime number has no positive divisors apart from 1 and itself
+	// Return the list if we've reached the beginning
+	if (i < 0)
+		return list
+
+	// If there's no remainder then it's not a prime
+	// Just return the list so far
+	for (var j = 2; j < i; ++j)
+		if (!(i % j))
+			return primes(i - 1, list)
+
+	// It's a prime, append it to the list
+	return primes(i - 1, i + " " + list)
 }
 
-prime(10)
+console.log(primes(100, ""))
+console.log(iterations + " iterations")
