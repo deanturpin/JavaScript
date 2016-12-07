@@ -40,8 +40,33 @@ onload = function() {
 	var gl = canvas.getContext("webgl")
 
 	// Vertex shader
-	var vertexShaderSource = document.getElementById("2d-vertex-shader").text
-	var fragmentShaderSource = document.getElementById("2d-fragment-shader").text
+	var vertexShaderSource = `
+
+	  // an attribute will receive data from a buffer
+	  attribute vec4 a_position;
+	 
+	  // all shaders have a main function
+	  void main() {
+	 
+		// gl_Position is a special variable a vertex shader
+		// is responsible for setting
+		gl_Position = a_position;
+		gl_PointSize = 10.0;
+	  }
+	`
+
+	var fragmentShaderSource = `
+
+		// fragment shaders don't have a default precision so we need
+		// to pick one. mediump is a good default
+		precision mediump float;
+
+		void main() {
+			// gl_FragColor is a special variable a fragment shader
+			// is responsible for setting
+			gl_FragColor = vec4(1, 0.5, 0.2, 1);
+		}
+	`
 
 	// Fragment shader
 	var vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)
@@ -62,9 +87,8 @@ onload = function() {
 
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW)
 
-	gl.viewport(0, 0, gl.canvas.width, gl.canvas.height)
-	// gl.clearColor(0.0, 0, 1.0, 1.0)
-	gl.enable(gl.DEPTH_TEST)
+	// gl.viewport(0, 0, gl.canvas.width, gl.canvas.height)
+	// gl.enable(gl.DEPTH_TEST)
 
 	gl.useProgram(program)
 
@@ -97,6 +121,7 @@ onload = function() {
 			       'gl_PointSize = 10.0;'+
 				      '}';
 	*/
+	// gl.clearColor(0.0, 0, 1.0, 1.0)
 
 	// GL primitives
 
